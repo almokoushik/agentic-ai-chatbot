@@ -1,5 +1,11 @@
 import streamlit as st
-from langchain_google_genai import ChatGoogleGenerativeAI
+
+try:
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    GEMINI_AVAILABLE = True
+except ImportError:
+    GEMINI_AVAILABLE = False
+    ChatGoogleGenerativeAI = None
 
 
 class GeminiLLM:
@@ -11,7 +17,8 @@ class GeminiLLM:
     
     def __init__(self):
         """Initialize Gemini LLM handler."""
-        pass
+        if not GEMINI_AVAILABLE:
+            st.warning("⚠️ Gemini LLM support is not available. Install langchain-google-genai package.")
 
     def get_llm_model(self):
         """Load and configure Google Gemini language model with API authentication.
@@ -25,6 +32,10 @@ class GeminiLLM:
         Raises:
             ValueError: When API key is missing or model initialization fails.
         """
+        if not GEMINI_AVAILABLE:
+            st.error("❌ Gemini LLM unavailable. Please install langchain-google-genai: pip install langchain-google-genai")
+            return None
+            
         try:
             gemini_api_key = st.secrets["GOOGLE_API_KEY"]
             

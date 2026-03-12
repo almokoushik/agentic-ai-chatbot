@@ -4,6 +4,11 @@ langchain_community
 langchain_core
 langchain_groq
 langchain_openai
+langchain-google-genai
 faiss-cpu
 streamlit
+streamlit-authenticator
+pymongo
+python-dotenv
+bcrypt
 tavily-python
