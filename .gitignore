@@ -1,12 +1,8 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
-
-# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -27,16 +23,28 @@ share/python-wheels/
 *.egg
 PIPFILE.lock
 
-# PyInstaller
-*.manifest
-*.spec
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv
+env.bak/
+venv.bak/
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.project
+.pydevproject
+.settings/
 
-# Unit test / coverage reports
-htmlcov/
+# Testing
 .tox/
 .nox/
 .coverage
@@ -48,6 +56,60 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+
+# Environment & Configuration
+.env
+.env.local
+.env.*.local
+secrets.toml
+*.secrets
+config/secrets/
+
+# Database & Caching
+*.db
+*.sqlite
+*.sqlite3
+MongoDB/
+data/
+cache/
+
+# Streamlit
+.streamlit/
+
+# Application Data
+users_data.json
+api_logs/
+*.log
+logs/
+
+# OS Files
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.temp
+
+# Distribution
+dist/
+build/
+*.egg-info/
+
+# Credentials (DO NOT COMMIT)
+credentials.json
+config.json
+*.key
+*.pem
+*.p12
+
+# Node modules (if using any JS tools)
+node_modules/
+package-lock.json
+yarn.lock
+
+# System files
+.vscode/extensions/
+.history/
+
 
 # Translations
 *.mo
@@ -143,5 +205,9 @@ Thumbs.db
 .env.local
 .env.*.local
 
-# Streamlit cache
+# Streamlit cache and secrets
 .streamlit/
+.streamlit/secrets.toml
+
+# User data file
+users_data.json
