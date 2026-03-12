@@ -34,7 +34,7 @@ class GeminiLLM:
 
             llm = ChatGoogleGenerativeAI(
                 api_key=gemini_api_key,
-                model="gemini-1.5-flash",
+                model="gemini-2.5-flash-lite",
                 temperature=0.7
             )
             return llm
