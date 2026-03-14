@@ -1,6 +1,6 @@
 # Agentic AI Chatbot
 
-A production-ready, multi-tenant AI chatbot framework built with **LangGraph**, **Dual-LLM Support** (Groq & Google Gemini), and **Streamlit**. Demonstrates enterprise-grade implementations including user authentication with bcrypt security, MongoDB persistence, API quota management, and agentic workflow orchestration for intelligent conversational AI.
+A production-ready, multi-tenant AI chatbot framework built with **LangGraph**, **Multiple-LLM Support** (Groq & Google Gemini, and more), and **Streamlit**. Demonstrates enterprise-grade implementations including user authentication with bcrypt security, MongoDB persistence, API quota management, and agentic workflow orchestration for intelligent conversational AI.
 
 ---
 
@@ -39,8 +39,8 @@ A production-ready, multi-tenant AI chatbot framework built with **LangGraph**, 
 - Virtual environment (venv/conda)
 - MongoDB instance (local or MongoDB Atlas)
 - API keys:
-  - Groq: [console.groq.com](https://console.groq.com/keys)
-  - Gemini: [makersuite.google.com](https://makersuite.google.com/app/apikey)
+  - Groq
+  - Gemini
 
 ### Installation
 
@@ -83,7 +83,7 @@ Access at: `http://localhost:8501`
 
 ---
 
-## 📋 Project Structure
+##  Project Structure
 
 ```
 agentic-ai-chatbot/
@@ -139,19 +139,7 @@ User Entry
   - 🟡 **Yellow** (10-19 calls): Quota warning threshold
   - 🔴 **Red** (20+ calls): Quota exceeded, access blocked
 
-**Database Schema**:
-```javascript
-{
-  "email": "user@example.com",
-  "full_name": "User Name",
-  "password": "$2b$10$...",  // bcrypt hash
-  "api_calls": 15,
-  "auth_method": "email",
-  "created_at": "2026-03-13T01:10:00.000Z",
-  "last_login": "2026-03-13T01:10:30.000Z",
-  "login_count": 3
-}
-```
+
 
 ---
 
@@ -197,7 +185,7 @@ db.users.find({ email: "user@example.com" }, { api_calls: 1 })
 
 ### Streamlit Cloud
 1. Push code to GitHub
-2. Connect repository to [Streamlit Cloud](https://streamlit.io/cloud)
+2. Connect repository to Streamlit Cloud
 3. Add secrets in deployment settings
 4. Auto-deploy on push
 
@@ -211,18 +199,8 @@ COPY . .
 CMD ["streamlit", "run", "app.py"]
 ```
 
-### Production Checklist
-- [ ] Set `MONGODB_URI` to MongoDB Atlas production cluster
-- [ ] Enable MongoDB connection pooling (default: 10-100 connections)
-- [ ] Configure API key rotation schedule
-- [ ] Enable HTTPS/TLS for all connections
-- [ ] Implement audit logging for sensitive operations
-- [ ] Set up monitoring for API quota and error rates
-- [ ] Review bcrypt rounds (current: 10 for security/performance balance)
 
----
-
-## 📈 Performance Metrics
+##  Performance Metrics
 
 | Metric | Value |
 |--------|-------|
@@ -233,53 +211,3 @@ CMD ["streamlit", "run", "app.py"]
 | API Quota Increment | ~15ms (atomic MongoDB operation) |
 
 ---
-
-##  Troubleshooting
-
-### MongoDB Connection Error
-```
-Error: MongoDB Connection Error
-Solution: Ensure mongod is running or update MONGODB_URI
-```
-
-### API Key Invalid
-```
-Error: Could not authenticate with LLM provider
-Solution: Verify API keys in .streamlit/secrets.toml
-```
-
-### Bcrypt Verification Failed
-```
-Error: Incorrect password
-Solution: Clear browser cookies and try again; check password encoding
-```
-
----
-
-
-##  Contributing
-
-Contributions welcome! Please follow these guidelines:
-1. Fork repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
----
-
-## 📧 Contact & Support
-
-- **GitHub Issues**: [Report bugs](https://github.com/almokoushik/agentic-ai-chatbot/issues)
-- **Author**: [Almo Koushik](https://github.com/almokoushik)
-
----
-
-## Acknowledgments
-
-- [LangGraph](https://python.langchain.com/docs/langgraph/) - Agentic workflow orchestration
-- [Groq](https://groq.com) - High-performance LLM inference
-- [Google Gemini](https://ai.google.dev) - Advanced language models
-- [MongoDB](https://www.mongodb.com) - Non-relational database
-- [Streamlit](https://streamlit.io) - Rapid UI development
-

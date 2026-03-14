@@ -18,8 +18,42 @@ class AuthenticationManager:
     def init_mongodb(self):
         """Initialize MongoDB connection"""
         try:
-            # Get MongoDB URI from environment or use localhost
-            mongodb_uri = st.secrets["MONGODB_URI"]
+            # Get MongoDB URI from Streamlit secrets
+            try:
+                mongodb_uri = st.secrets.get("MONGODB_URI")
+            except (KeyError, AttributeError):
+                mongodb_uri = None
+            
+            if not mongodb_uri:
+                st.error("❌ MongoDB Configuration Missing")
+                st.error("**MONGODB_URI** secret is not configured.")
+                st.markdown("""
+### For Local Development:
+1. Create/update `.streamlit/secrets.toml`:
+```toml
+MONGODB_URI = "mongodb://localhost:27017/"
+```
+2. Make sure MongoDB is running:
+```bash
+mongod
+```
+3. Restart the Streamlit app
+
+### For Streamlit Cloud Deployment:
+1. Go to your Streamlit Cloud app settings
+2. Navigate to **Secrets** section
+3. Add:
+```
+MONGODB_URI = mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/
+```
+4. Click "Save" and redeploy
+
+### Get MongoDB Atlas URI:
+- Visit [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- Create a cluster and get the connection string
+- Replace with your credentials
+                """)
+                raise KeyError("MONGODB_URI secret not configured. See instructions above.")
             
             # Create MongoDB client with timeout
             client = MongoClient(mongodb_uri, serverSelectionTimeoutMS=5000)
@@ -39,9 +73,18 @@ class AuthenticationManager:
             
         except (ConnectionFailure, ServerSelectionTimeoutError) as e:
             st.error(f"❌ MongoDB Connection Error: {e}")
-            st.info("💡 Make sure MongoDB is running. For local development:\n"
-                   "```\nmongod\n```\n"
-                   "Or set MONGODB_URI environment variable for remote MongoDB.")
+            st.info("💡 Make sure your MongoDB instance is running and the URI is correct.")
+            st.markdown("""
+**Troubleshooting:**
+- Local: Run `mongod` in terminal
+- Remote: Check MongoDB Atlas cluster status
+- Credentials: Verify username/password in connection string
+            """)
+            raise
+        except KeyError as e:
+            # Re-raise KeyError with helpful context
+            st.error("❌ Configuration Error")
+            st.error(str(e))
             raise
 
     def hash_password(self, password: str) -> str:

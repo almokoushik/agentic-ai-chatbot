@@ -14,7 +14,7 @@ class GroqLLM:
             selected_groq_model = self.user_controls_input.get("selected_groq_model")
             
             if not groq_api_key:
-                st.error("❌ GROQ_API_KEY environment variable is not set")
+                st.error(" GROQ_API_KEY environment variable is not set")
                 return None
 
             llm = ChatGroq(api_key=groq_api_key, model=selected_groq_model)

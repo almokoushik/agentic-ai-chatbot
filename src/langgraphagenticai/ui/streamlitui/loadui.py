@@ -24,9 +24,9 @@ class LoadStreamlitUI:
             if self.user_controls["selected_llm"] == 'Groq':
                 # Check if API key is set in environment
                 if not os.environ.get("GROQ_API_KEY"):
-                    st.warning("⚠️ GROQ_API_KEY environment variable is not set")
+                    st.warning(" GROQ_API_KEY environment variable is not set")
                 else:
-                    st.success("✅ GROQ_API_KEY loaded from environment")
+                    st.success(" GROQ_API_KEY loaded from environment")
                 
                 # Model selection
                 model_options = self.config.get_groq_model_options()
@@ -35,9 +35,9 @@ class LoadStreamlitUI:
             elif self.user_controls["selected_llm"] == 'Gemini':
                 # Check if API key is set in environment
                 if not os.environ.get("GEMINI_API_KEY"):
-                    st.warning("⚠️ GEMINI_API_KEY environment variable is not set")
+                    st.warning(" GEMINI_API_KEY environment variable is not set")
                 else:
-                    st.success("✅ GEMINI_API_KEY loaded from environment")
+                    st.success(" GEMINI_API_KEY loaded from environment")
                 
                 # Model selection for Gemini
                 model_options = self.config.get_gemini_model_options()

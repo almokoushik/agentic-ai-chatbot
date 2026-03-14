@@ -24,13 +24,13 @@ def display_user_sidebar(auth_manager, user_email, user_name):
         api_calls = auth_manager.get_api_call_count(user_email)
         
         if api_calls < 10:
-            st.success(f"📊 API Calls: {api_calls}/20")
+            st.success(f" API Calls: {api_calls}/20")
         elif api_calls < 20:
-            st.warning(f"⚠️ API Calls: {api_calls}/20")
+            st.warning(f" API Calls: {api_calls}/20")
         else:
-            st.error(f"❌ API Calls: {api_calls}/20 (Quota Exceeded)")
+            st.error(f" API Calls: {api_calls}/20 (Quota Exceeded)")
         
-        if st.button("🚪 Logout", use_container_width=True):
+        if st.button(" Logout", use_container_width=True):
             auth_manager.logout_user()
             st.session_state.authenticated = False
             st.rerun()
