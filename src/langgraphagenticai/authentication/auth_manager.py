@@ -44,7 +44,7 @@ mongod
 2. Navigate to **Secrets** section
 3. Add:
 ```
-MONGODB_URI = mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/
+MONGODB_URI = mongodb+srv://
 ```
 4. Click "Save" and redeploy
 
